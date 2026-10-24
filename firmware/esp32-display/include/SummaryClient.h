@@ -17,6 +17,8 @@ class SummaryClient {
 
     HTTPClient http;
     http.setTimeout(8000);
+    // HTTP/1.0 makes the server send plain (not chunked) bodies, which getStream() can parse.
+    http.useHTTP10(true);
     if (!http.begin(tls, url_)) return FetchStatus::Transient;
     http.addHeader("x-device-token", token_);
 

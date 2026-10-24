@@ -14,7 +14,8 @@ Changes to the plan are recorded here with the date, the reason, and the affecte
 | D7 | 2026-10-24 | A tiny hash router (`#/today?date=…`) instead of a router library. | Six screens, no nested routes; keeps the bundle small. | NFR1, NFR2 |
 | D8 | 2026-10-24 | Import is two-step: **preview** (validate every row with the Zod schema, show counts, invalid rows with reasons, duplicates, overwrites) then **commit**. "Find old app data in this browser" only works on the same origin as the old app; otherwise export a file from the old app. | Plan: verify counts before saving; never delete the old data. | FR9, UC7 |
 | D9 | 2026-10-24 | Added a sixth insight rule, "Sleep and mood" (mood after goal-length vs shorter sleep). | A key user story is "see my mood next to my sleep". Added as a new `InsightRule`; `InsightEngine` unchanged (Open/Closed). | FR13 |
+| D10 | 2026-10-25 | **OLED controller confirmed: SH1106**, 128×64, I2C address 0x3C (`firmware/oled-hello` drew a frame on all four edges). Board: ESP32-D0WD-V3 (38-pin DevKitC), SDA = GPIO21, SCL = GPIO22. | Closes open decision 6 from the I1 spike. `esp32-display` already uses `U8G2_SH1106_128X64_NONAME_F_HW_I2C`, so no code change. | FR12 |
+| D11 | 2026-10-25 | The device trusts **GTS Root R4** (valid until 2036), with **GlobalSign Root CA** (until 2028) as a backup, in the gitignored `secrets.h`. | supabase.co's chain is WE1 → GTS Root R4 (also cross-signed by GlobalSign). The root's key was checked against the chain the server sends. | NFR4, FR11 |
 
 ## Still open
-- **OLED controller** (decision 6): run `firmware/oled-hello` and record SH1106 vs SSD1306 here.
 - **Time budget** (decision 9): 8–10 h/week for 10 weeks — owner to confirm.
