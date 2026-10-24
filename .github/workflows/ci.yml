@@ -1,0 +1,34 @@
+# Runs type check, lint, tests (with domain coverage gate) and build on every push and PR.
+# Note: GitHub only runs workflows from the repository ROOT's .github folder. This file works
+# as-is once life-dashboard-v2 is its own repository (recommended for the portfolio).
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run coverage
+      - run: npm run build
+
+  database:
+    # Two-account RLS + constraint tests against a local Supabase stack.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - run: supabase db start
+      - run: supabase test db

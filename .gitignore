@@ -1,0 +1,11 @@
+node_modules
+dist
+coverage
+*.local
+.env
+.env.*
+!.env.example
+supabase/.temp
+supabase/functions/_shared/domain
+firmware/**/secrets.h
+firmware/**/.pio

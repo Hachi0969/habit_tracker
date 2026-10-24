@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "vitest"],
+  "rules": {
+    "react/no-danger": "error",
+    "no-console": "warn"
+  }
+}

@@ -1,0 +1,6 @@
+# Minimal Supabase CLI config; run `supabase init` / `supabase link` to fill in the rest.
+project_id = "life-dashboard-v2"
+
+[functions.device-summary]
+# The ESP32 has no user login: its x-device-token header is the credential, checked inside the function.
+verify_jwt = false
